@@ -1,0 +1,32 @@
+[package]
+name = "seismonia"
+version = "0.1.0"
+authors = ["Sergei Abramenkov <s.abramenkov@nsu.ru>"]
+edition = "2021"
+publish = false
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.dist]
+inherits = "release"
+opt-level = 3
+
+
+
+[dependencies]
+bevy = {version = "0.15", default-features = false, features = [
+                    "bevy_scene", "bevy_winit", "bevy_pbr",
+                    "bevy_render", "bevy_text", "bevy_ui", 
+                    "animation", "multi_threaded", "default_font",
+                    "hdr", "x11", "tonemapping_luts", 
+                    ]}
